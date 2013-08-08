@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807143935) do
+ActiveRecord::Schema.define(version: 20130808122607) do
 
   create_table "clients", force: true do |t|
     t.string   "identifier", null: false
@@ -25,5 +25,20 @@ ActiveRecord::Schema.define(version: 20130807143935) do
   end
 
   add_index "clients", ["identifier"], name: "index_clients_on_identifier", unique: true, using: :btree
+
+  create_table "suppliers", force: true do |t|
+    t.string   "identifier",       null: false
+    t.string   "name",             null: false
+    t.text     "address",          null: false
+    t.text     "shipping_address", null: false
+    t.string   "contact_name"
+    t.string   "contact_mail"
+    t.string   "phone",            null: false
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "suppliers", ["identifier"], name: "index_suppliers_on_identifier", unique: true, using: :btree
 
 end

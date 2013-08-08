@@ -32,12 +32,18 @@
             <ul class="nav">
               <li><a href="/">Home</a></li> 
               <li class="<%= 'active' if request.path.starts_with?(clients_path) %>"><a href="<%= clients_path %>">Clients</a></li>
+			  <li class="<%= 'active' if request.path.starts_with?(suppliers_path) %>"><a href="<%= suppliers_path %>">Suppliers</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
+		<%- if notice.present? -%>
+		<div class="alert alert-success alert-block">
+			<%= notice %>
+		</div>
+		<%- end -%>
 	  <%= yield %>
     </div>
   </body>

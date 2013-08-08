@@ -46,3 +46,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+# Extra Validations
+gem "validates_email_format_of"
