@@ -12,6 +12,8 @@
   <dd><%= display_value(@client.contact) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
   <dd><%= simple_format @client.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country_name) %>:</strong></dt>
+  <dd><%= @client.country_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
   <dd><%= @client.phone %></dd>
   <dt><strong><%= model_class.human_attribute_name(:fax) %>:</strong></dt>
