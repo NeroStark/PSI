@@ -1,4 +1,6 @@
 PSI::Application.routes.draw do
+  resources :payment_rules
+
   resources :banks
 
   resources :suppliers

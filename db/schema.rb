@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130809122952) do
+ActiveRecord::Schema.define(version: 20130809142334) do
 
   create_table "banks", force: true do |t|
     t.string   "identifier", null: false
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20130809122952) do
   end
 
   add_index "clients", ["identifier"], name: "index_clients_on_identifier", unique: true, using: :btree
+
+  create_table "payment_rules", force: true do |t|
+    t.string   "name",                                null: false
+    t.decimal  "percent",    precision: 10, scale: 0, null: false
+    t.integer  "period",                              null: false
+    t.integer  "since",                               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_rules", ["percent", "period", "since"], name: "index_payment_rules_on_percent_and_period_and_since", unique: true, using: :btree
 
   create_table "suppliers", force: true do |t|
     t.string   "identifier",       null: false
