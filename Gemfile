@@ -23,6 +23,7 @@ gem 'bootstrap-sass'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -49,6 +50,7 @@ end
 
 # Extra Validations
 gem 'validates_email_format_of'
+gem 'validates_timeliness'
 
 # Country Select
 gem 'country_select'

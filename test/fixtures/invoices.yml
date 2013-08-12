@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  recipient_id: 
+  identifier: MyString
+  amount: 9.99
+  ordered_at: 2013-08-12 14:52:31
+  shipped_at: 2013-08-12 14:52:31
+  invoiced_at: 2013-08-12 14:52:31
+  delivered_at: 2013-08-12 14:52:31
+
+two:
+  recipient_id: 
+  identifier: MyString
+  amount: 9.99
+  ordered_at: 2013-08-12 14:52:31
+  shipped_at: 2013-08-12 14:52:31
+  invoiced_at: 2013-08-12 14:52:31
+  delivered_at: 2013-08-12 14:52:31

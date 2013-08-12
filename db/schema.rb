@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130809142334) do
+ActiveRecord::Schema.define(version: 20130812164720) do
 
   create_table "banks", force: true do |t|
     t.string   "identifier", null: false
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20130809142334) do
   end
 
   add_index "clients", ["identifier"], name: "index_clients_on_identifier", unique: true, using: :btree
+
+  create_table "invoices", force: true do |t|
+    t.integer  "recipient_id",                            null: false
+    t.string   "recipient_type",                          null: false
+    t.string   "identifier",                              null: false
+    t.decimal  "amount",         precision: 10, scale: 2, null: false
+    t.date     "ordered_at",                              null: false
+    t.date     "shipped_at"
+    t.date     "invoiced_at"
+    t.date     "delivered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoices", ["identifier"], name: "index_invoices_on_identifier", unique: true, using: :btree
+  add_index "invoices", ["recipient_id", "recipient_type"], name: "index_invoices_on_recipient_id_and_recipient_type", using: :btree
 
   create_table "payment_rules", force: true do |t|
     t.string   "name",                                null: false
@@ -63,5 +79,17 @@ ActiveRecord::Schema.define(version: 20130809142334) do
   end
 
   add_index "suppliers", ["identifier"], name: "index_suppliers_on_identifier", unique: true, using: :btree
+
+  create_table "target_payment_rules", force: true do |t|
+    t.integer  "target_id",       null: false
+    t.string   "target_type",     null: false
+    t.integer  "payment_rule_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "target_payment_rules", ["payment_rule_id"], name: "index_target_payment_rules_on_payment_rule_id", using: :btree
+  add_index "target_payment_rules", ["target_id", "target_type", "payment_rule_id"], name: "index_target_payment_rules_on_target_and_payment_rule", unique: true, using: :btree
+  add_index "target_payment_rules", ["target_id", "target_type"], name: "index_target_payment_rules_on_target_id_and_target_type", using: :btree
 
 end
