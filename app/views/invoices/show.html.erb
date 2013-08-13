@@ -4,6 +4,8 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:recipient) %>:</strong></dt>
+  <dd><%= link_to @invoice.recipient.name, @invoice.recipient %></dd>
   <dt><strong><%= model_class.human_attribute_name(:recipient_type) %>:</strong></dt>
   <dd><%= @invoice.recipient_type %></dd>
   <dt><strong><%= model_class.human_attribute_name(:identifier) %>:</strong></dt>
@@ -18,6 +20,14 @@
   <dd><%= display_value(@invoice.shipped_at) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:delivered_at) %>:</strong></dt>
   <dd><%= display_value(@invoice.delivered_at) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_rules) %>:</strong></dt>
+  <dd>
+   <ul>
+    <%- @invoice.payment_rules.each do |rule| -%>
+     <li><%= link_to rule.name, rule %></li>
+    <%- end -%>
+   </ul>
+  </dd>
 </dl>
 
 <div class="form-actions">

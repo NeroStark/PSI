@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :edit, :update, :destroy]
+  before_action :set_payment_rules, only: [:create, :update]
 
   # GET /suppliers
   # GET /suppliers.json
@@ -25,6 +26,7 @@ class SuppliersController < ApplicationController
   # POST /suppliers.json
   def create
     @supplier = Supplier.new(supplier_params)
+	assign_payment_rules_to_supplier
 
     respond_to do |format|
       if @supplier.save
@@ -40,6 +42,8 @@ class SuppliersController < ApplicationController
   # PATCH/PUT /suppliers/1
   # PATCH/PUT /suppliers/1.json
   def update
+    assign_payment_rules_to_supplier
+  
     respond_to do |format|
       if @supplier.update(supplier_params)
         format.html { redirect_to @supplier, notice: 'Supplier was successfully updated.' }
@@ -66,6 +70,23 @@ class SuppliersController < ApplicationController
     def set_supplier
       @supplier = Supplier.find(params[:id])
     end
+	
+	def set_payment_rules
+	  @payment_rules = PaymentRule.find_all_by_id(params[:supplier][:payment_rule_ids])
+	end
+	
+	def assign_payment_rules_to_supplier
+	  @removed_payment_rules = @supplier.payment_rules - @payment_rules
+	  if @removed_payment_rules.present?
+	    @supplier.target_payment_rules.where(payment_rule_id: @removed_payment_rules.map(&:id)).destroy_all
+	  end
+	  
+	  if @payment_rules.present?
+	    @payment_rules.each do |rule|
+	      @supplier.target_payment_rules.build(payment_rule: rule) unless @supplier.payment_rules.include?(rule)
+		end
+	  end
+	end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supplier_params

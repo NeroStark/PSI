@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_payment_rules, only: [:create, :update]
+  
   # GET /clients
   # GET /clients.json
   def index
@@ -25,7 +26,8 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @client = Client.new(client_params)
-
+	assign_payment_rules_to_client
+	
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }
@@ -40,6 +42,8 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
+    assign_payment_rules_to_client
+	
     respond_to do |format|
       if @client.update(client_params)
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
@@ -66,7 +70,24 @@ class ClientsController < ApplicationController
     def set_client
       @client = Client.find(params[:id])
     end
-
+	
+	def set_payment_rules
+	  @payment_rules = PaymentRule.find_all_by_id(params[:client][:payment_rule_ids])
+	end
+	
+	def assign_payment_rules_to_client
+	  @removed_payment_rules = @client.payment_rules - @payment_rules
+	  if @removed_payment_rules.present?
+	    @client.target_payment_rules.where(payment_rule_id: @removed_payment_rules.map(&:id)).destroy_all
+	  end
+	  
+	  if @payment_rules.present?
+	    @payment_rules.each do |rule|
+	      @client.target_payment_rules.build(payment_rule: rule) unless @client.payment_rules.include?(rule)
+		end
+	  end
+	end
+	
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
       params.require(:client).permit(:identifier, :name, :contact, :address, :country_code, :phone, :fax)

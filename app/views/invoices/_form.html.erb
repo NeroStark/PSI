@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :recipient_type, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :recipient_type, required: true, class: 'text_field' %>
+      <%= f.select :recipient_type, ['Client', 'Supplier'], required: true, class: 'select' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :recipient_id, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :recipient_id, required: true, class: 'text_field' %>
+      <%= f.select :recipient_id, (@invoice.recipient_type.blank? || @invoice.recipient_type == 'Client' ? @clients : @suppliers), required: true, class: 'select' %>
     </div>
   </div>
   <div class="control-group">
@@ -68,7 +68,20 @@
 <% end %>
 
 <script>
+  var data = {
+    Client: <%= @clients.to_json.html_safe %>,
+    Supplier: <%= @suppliers.to_json.html_safe %>
+  };
+  
   $(function() {
-    $('.datepicker').datepicker();
+    $('#invoice_recipient_type').on('change', function() {
+      $('#invoice_recipient_id option').remove();
+      var name = $(this).val();
+	  $.each(data[name], function(index, value) {
+	    $('#invoice_recipient_id').append($("<option>",{ value: value[1], text: value[0] }));
+      });
+    });
+	
+    $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
   });
 </script>

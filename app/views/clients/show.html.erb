@@ -18,6 +18,14 @@
   <dd><%= @client.phone %></dd>
   <dt><strong><%= model_class.human_attribute_name(:fax) %>:</strong></dt>
   <dd><%= display_value(@client.fax) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_rules) %>:</strong></dt>
+  <dd>
+   <ul>
+    <%- @client.payment_rules.each do |rule| -%>
+     <li><%= link_to rule.name, rule %></li>
+    <%- end -%>
+   </ul>
+  </dd>
 </dl>
 
 <div class="form-actions">

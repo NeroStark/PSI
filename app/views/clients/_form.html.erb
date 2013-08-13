@@ -53,6 +53,12 @@
       <%= f.text_field :fax, class: 'text_field' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :payment_rules, class: 'control-label' %>
+    <div class="controls">
+	  <%= f.select :payment_rule_ids, PaymentRule.pluck(:name, :id), { class: 'select' }, { multiple: true, required: true } %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>

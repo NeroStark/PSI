@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_clients_and_suppliers, only: [:new, :edit]
 
   # GET /invoices
   # GET /invoices.json
@@ -25,7 +26,10 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
+    @invoice.recipient.payment_rules.each do |rule|
+      @invoice.target_payment_rules.build(payment_rule: rule)
+    end if @invoice.recipient.present?
+  
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
@@ -66,6 +70,11 @@ class InvoicesController < ApplicationController
     def set_invoice
       @invoice = Invoice.find(params[:id])
     end
+	
+	def set_clients_and_suppliers
+	  @clients = Client.pluck(:name, :id)
+	  @suppliers = Supplier.pluck(:name, :id)
+	end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
