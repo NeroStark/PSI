@@ -27,7 +27,7 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     @invoice.recipient.payment_rules.each do |rule|
-      @invoice.target_payment_rules.build(payment_rule: rule)
+	  @invoice.invoice_payments.build(payment_rule: rule)
     end if @invoice.recipient.present?
   
     respond_to do |format|

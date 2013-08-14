@@ -1,7 +1,7 @@
 class Invoice < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
-  has_many :target_payment_rules, as: :target, dependent: :destroy
-  has_many :payment_rules, through: :target_payment_rules
+  has_many :invoice_payments, dependent: :destroy
+  has_many :payment_rules, through: :invoice_payments
   
   validates :recipient, presence: true
   validates :identifier, presence: true, uniqueness: true
@@ -11,5 +11,5 @@ class Invoice < ActiveRecord::Base
   validates_date :invoiced_at, allow_blank: true
   validates_date :shipped_at, allow_blank: true
   validates_date :delivered_at, allow_blank: true  
-  validates :target_payment_rules, length: { minimum: 1 }
+  validates :invoice_payments, length: { minimum: 1 }
 end

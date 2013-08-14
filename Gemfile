@@ -54,3 +54,6 @@ gem 'validates_timeliness'
 
 # Country Select
 gem 'country_select'
+
+# Simple Calendar
+gem 'simple_calendar'
