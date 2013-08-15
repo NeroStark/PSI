@@ -57,3 +57,6 @@ gem 'country_select'
 
 # Simple Calendar
 gem 'simple_calendar'
+
+# Login System
+gem 'devise'

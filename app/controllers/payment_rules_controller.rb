@@ -1,4 +1,5 @@
 class PaymentRulesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_payment_rule, only: [:show, :edit, :update, :destroy]
 
   # GET /payment_rules

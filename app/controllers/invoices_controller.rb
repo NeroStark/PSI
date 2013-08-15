@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
   before_action :set_clients_and_suppliers, only: [:new, :edit]
 

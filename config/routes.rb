@@ -1,11 +1,19 @@
 PSI::Application.routes.draw do
+  resources :accounts
+
+  devise_for :users, :skip => [:registrations] 
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
+  
   resources :invoice_payments, only: [] do 
     member do
       get :pay
       get :unpay
     end
   end
-  
+    
   resources :invoices
 
   resources :payment_rules

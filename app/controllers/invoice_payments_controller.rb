@@ -1,4 +1,5 @@
 class InvoicePaymentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_invoice_payment, only: [:pay, :unpay]
   
   # GET /invoice_payments/1/pay
