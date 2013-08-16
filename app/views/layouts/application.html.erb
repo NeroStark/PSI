@@ -42,7 +42,7 @@
 		    <%- end -%>
             <ul class="nav">
               <li class="<%= 'active' if request.path == '/' %>"><a href="/">Calendar</a></li> 
-			  <li id="third-party-menu" class="dropdown">
+			  <li id="third-party-menu" class="dropdown <%= 'active' if request.path.starts_with?(clients_path) || request.path.starts_with?(suppliers_path) || request.path.starts_with?(banks_path) %>" >
                 <a href="#" id="third-party-dropdown" role="button" class="dropdown-toggle" data-toggle="dropdown">Third Parties <b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="third-party-dropdown">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= clients_path %>">Clients</a></li>

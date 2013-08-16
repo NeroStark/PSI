@@ -3,7 +3,8 @@
 </div>
 
 <%= calendar @events do |event| %>
-  <div data-title="<b>Invoice</b> <%= event.invoice.identifier =%>" data-content="<p><b>Name:</b> 
+  <div data-title="<b>Invoice</b> <%= event.invoice.identifier =%>" data-content="<p><b>Type:</b> <%= event.invoice.recipient_type =%><br>
+<b>Name:</b> 
   <%= link_to(event.invoice.recipient.name, event.invoice.recipient).to_str %><br>
   <b>Amount: </b><%= event.amount %> </p><p>
   <%= link_to(t('.show', default: t('helpers.links.show')), event.invoice, class: 'btn btn-mini btn-info').to_str %>

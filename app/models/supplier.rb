@@ -9,7 +9,7 @@ class Supplier < ActiveRecord::Base
   validates :shipping_address, presence: true
   validates :phone, presence: true
   validates :country_code, presence: true
-  validates :target_payment_rules, length: { minimum: 1 }
+  validates :target_payment_rules, length: { minimum: 1 }, rule_limit: true
 
   def country_name
     ::CountrySelect::COUNTRIES[country_code]

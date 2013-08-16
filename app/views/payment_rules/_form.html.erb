@@ -35,6 +35,12 @@
       <%= f.select :since, PaymentRule::SINCE_VALUES.each_with_index.to_a, required: true, class: 'select' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :end_of_month, class: 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :end_of_month, class: 'check_box' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>

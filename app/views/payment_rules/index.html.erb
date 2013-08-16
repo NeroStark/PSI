@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:percent) %></th>
 	  <th><%= model_class.human_attribute_name(:period) %></th>
+	  <th><%= model_class.human_attribute_name(:end_of_month) %></th>
 	  <th><%= model_class.human_attribute_name(:since) %></th>
       <th><%=t '.actions', default: t("helpers.actions") %></th>
     </tr>
@@ -18,6 +19,7 @@
         <td><%= payment_rule.name %></td>
 		<td><%= payment_rule.percent %></td>
 		<td><%= payment_rule.period %></td>
+		<td><%= payment_rule.end_of_month %></td>
 		<td><%= payment_rule.since_name %></td>
         <td>
 		  <%= link_to t('.show', default: t("helpers.links.show")),

@@ -18,6 +18,14 @@ class InvoicePayment < ActiveRecord::Base
   end
   
   def start_time
-    reference_time + payment_rule.period.days
+    if !reference_time.nil?
+	  time = reference_time
+	  
+	  if payment_rule.end_of_month?
+	    time = time.end_of_month
+	  end
+	  
+      time + payment_rule.period.days
+    end
   end
 end

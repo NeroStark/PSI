@@ -70,6 +70,6 @@ class PaymentRulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_rule_params
-      params.require(:payment_rule).permit(:name, :percent, :period, :since)
+      params.require(:payment_rule).permit(:name, :percent, :period, :end_of_month, :since)
     end
 end
