@@ -68,7 +68,7 @@
   <div class="control-group">
     <%= f.label :payment_rules, class: 'control-label' %>
     <div class="controls">
-	  <%= f.select :payment_rule_ids, PaymentRule.pluck(:name, :id), { class: 'select' }, { multiple: true, required: true } %>
+      <%= f.select :payment_rule_ids, PaymentRule.pluck(:name, :id), { class: 'select' }, { multiple: true, required: true } %>
     </div>
   </div>
 
