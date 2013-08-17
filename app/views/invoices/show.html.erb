@@ -28,6 +28,10 @@
     <%- end -%>
    </ul>
   </dd>
+  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
+  <dd><%=l @invoice.created_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:updated_at) %>:</strong></dt>
+  <dd><%=l @invoice.updated_at %></dd>
 </dl>
 
 <div class="form-actions">
