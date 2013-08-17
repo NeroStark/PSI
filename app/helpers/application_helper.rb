@@ -3,6 +3,10 @@ module ApplicationHelper
       value.present? ? value : 'Not available'
   end
 
+  def display_text(text)
+    split_paragraphs(text).join('<br /><br />').html_safe
+  end
+
   def display_datetime(datetime)
     datetime.present? ? l(value) : 'Not available'
   end

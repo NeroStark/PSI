@@ -9,7 +9,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @bank.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><%= simple_format @bank.address %></dd>
+  <dd><%= display_text(@bank.address) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
   <dd><%=l @bank.created_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:updated_at) %>:</strong></dt>
