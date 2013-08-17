@@ -12,7 +12,7 @@ class CreateSuppliers < ActiveRecord::Migration
 
       t.timestamps
     end
-	
-	add_index :suppliers, :identifier, unique: true
+
+    add_index :suppliers, :identifier, unique: true
   end
 end

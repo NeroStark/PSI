@@ -10,7 +10,7 @@ class CreateClients < ActiveRecord::Migration
 
       t.timestamps
     end
-	
-	add_index :clients, :identifier, unique: true
+
+    add_index :clients, :identifier, unique: true
   end
 end
