@@ -4,7 +4,7 @@ class CalendarController < ApplicationController
   # GET /
   def index
     @events = InvoicePayment.all.select do |event|
-	  event.start_time.present?
-	end
+      event.start_time.present?
+    end
   end
 end

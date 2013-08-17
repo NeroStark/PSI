@@ -6,7 +6,7 @@ class CreateTargetPaymentRules < ActiveRecord::Migration
 
       t.timestamps
     end
-	
-	add_index :target_payment_rules, [:target_id, :target_type, :payment_rule_id], unique: true, name: :index_target_payment_rules_on_target_and_payment_rule
+
+    add_index :target_payment_rules, [:target_id, :target_type, :payment_rule_id], unique: true, name: :index_target_payment_rules_on_target_and_payment_rule
   end
 end
