@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   has_many :target_payment_rules, as: :target, dependent: :destroy
   has_many :payment_rules, through: :target_payment_rules
-  
+
   validates :identifier, presence: true, uniqueness: true, numericality: true
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true

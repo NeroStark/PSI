@@ -8,7 +8,7 @@ class CreatePaymentRules < ActiveRecord::Migration
 
       t.timestamps
     end
-	
-	add_index :payment_rules, [:percent, :period, :since], unique: true
+
+    add_index :payment_rules, [:percent, :period, :since], unique: true
   end
 end

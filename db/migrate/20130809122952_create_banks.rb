@@ -7,7 +7,7 @@ class CreateBanks < ActiveRecord::Migration
 
       t.timestamps
     end
-	
-	add_index :banks, :identifier, unique: true
+
+    add_index :banks, :identifier, unique: true
   end
 end

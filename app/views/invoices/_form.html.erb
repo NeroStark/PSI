@@ -72,16 +72,18 @@
     Client: <%= @clients.to_json.html_safe %>,
     Supplier: <%= @suppliers.to_json.html_safe %>
   };
-  
+
   $(function() {
     $('#invoice_recipient_type').on('change', function() {
       $('#invoice_recipient_id option').remove();
+
       var name = $(this).val();
-	  $.each(data[name], function(index, value) {
-	    $('#invoice_recipient_id').append($("<option>",{ value: value[1], text: value[0] }));
+
+      $.each(data[name], function(index, value) {
+        $('#invoice_recipient_id').append($("<option>",{ value: value[1], text: value[0] }));
       });
     });
-	
+
     $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
   });
 </script>
